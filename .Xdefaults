@@ -1,7 +1,7 @@
 URxvt.scrollBar: false
 URxvt.secondaryScroll: true
-URxvt*font: xft:Terminess Powerline:style=Medium:pixelsize=18
-URxvt*boldFont: xft:Terminess Powerline:style=Bold:pixelsize=18
+URxvt*font: xft: xos4 Terminus:style=Medium:pixelsize=28
+URxvt*boldFont: xft: xos4 Terminus:style=Bold:pixelsize=28
 URxvt.urlLauncher: firefox
 URxvt.matcher.button: 1
 URxvt.tabbed.saveLines: 1000
@@ -11,10 +11,9 @@ URxvt.tabbed.tabbar-bg: 0
 URxvt.tabbed.tab-fg: 0
 URxvt.tabbed.tab-bg: 1
 URxvt.tabbed.secondaryScroll: true
-URxvt*inheritPixmap: true 
+URxvt*inheritPixmap: true
 URxvt.iso14755:false
 URxvt.iso14755_52:false
-URxvt*shading: 24
 URxvt*saveLines: 12000
 
 
@@ -22,7 +21,6 @@ URxvt*saveLines: 12000
 ! Xft settings
 !-------------------------------------------------------------------------------
 
-Xft.dpi:                    96
 Xft.antialias:              true
 Xft.rgba:                   rgb
 Xft.hinting:                true
@@ -37,8 +35,9 @@ Xft.hintstyle:              hintslight
 
 URxvt.depth:                32
 URxvt.geometry:             90x30
-URxvt.transparent:          false
-URxvt.fading:               0
+URxvt.transparent:          true
+URxvt*shading:              20
+URxvt.fading:               20
 ! URxvt.urgentOnBell:         true
 ! URxvt.visualBell:           true
 URxvt.loginShell:           true

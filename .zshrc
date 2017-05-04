@@ -6,15 +6,23 @@ export EDITOR=vim
 export PATH=$PATH:~/.gem/ruby/2.2.0/bin:~/scripts
 export PATH=/home/jakob/Downloads/rust-nightly-x86_64-unknown-linux-gnu/rustc/bin:$PATH
 export LD_LIBRARY_PATH=/home/jakob/Downloads/rust-nightly-x86_64-unknown-linux-gnu/rustc/lib
-source /usr/bin/virtualenvwrapper.sh
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# NPM packages in homedir
+NPM_PACKAGES="$HOME/.npm-packages"
+# Tell our environment about user-installed node tools
+PATH="$NPM_PACKAGES/bin:$PATH"
+# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
+unset MANPATH  # delete if you already modified MANPATH elsewhere in your configuration
+MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# Tell Node about these packages
+NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="pygmalion"
 
 # Example aliases
  alias zshconfig="vim ~/.zshrc"
@@ -36,6 +44,7 @@ ZSH_THEME="agnoster"
  alias pstars="wine .wine/drive_c/Program\ Files\ \(x86\)/PokerStars.EU/PokerStars.exe"
  alias mute="amixer set Master mute"
  alias unmute="amixer set Master unmute;amixer set Speaker unmute "
+ alias prolog="swipl"
 
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
