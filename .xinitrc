@@ -1,4 +1,4 @@
-xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --setprovideroffloadsink modesetting NVIDIA-0
 xrandr --auto
 
 case $WM in

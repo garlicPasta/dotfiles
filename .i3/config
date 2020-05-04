@@ -162,10 +162,10 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-        font pango:DejaVu Sans Mono, Icons 8
-}
+#bar {
+#        status_command i3status
+#        font pango:DejaVu Sans Mono, Icons 8
+#}
 
 # assignments
 assign [class="(?i)thunderbird"] 9:Mail
@@ -178,9 +178,14 @@ assign [class="(?i)Soundnode"] 10:Music
 exec --no-startup-id thunderbird
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst
-exec_always setxkbmap -option 'caps:escape'
-exec_always syndaemon -i 2 -t -k
+exec --no-startup-id autorandr --change --force
+exec_always --no-startup-id setxkbmap -option 'caps:escape'
+exec_always --no-startup-id syndaemon -i 2 -t -k
 #exec_always ~/bin/setupMonitor.sh -i 2 -t -k
+
+bar {
+    i3bar_command $HOME/.config/polybar/launch.sh
+}
 
 bindsym Mod4+Shift+g mode "gaming"
 mode "gaming" {

@@ -1,6 +1,7 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+filetype off
 
 " TODO: this may not be in the correct place. It is intended to allow overriding <Leader>.
 " source ~/.vimrc.before if it exists.
@@ -11,13 +12,12 @@ endif
 " ================ General Config ====================
 
 
-set background=dark
 set tags=./tags;/
 let g:auto_save = 1
 
 :au FocusLost * :wa             "Auto Save when change focus
 set colorcolumn=80
-set guifont=Terminus
+set guifont=Monospace
 set number                      "Line numbers are good
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=1000                "Store lots of :cmdline history
@@ -83,9 +83,9 @@ endif
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set expandtab
 
 filetype plugin on
@@ -139,40 +139,49 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
 " " required! 
-Bundle 'gmarik/vundle'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/nerdtree'
+Plugin 'gmarik/vundle'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
 map <F2> :NERDTreeToggle<enter>
-autocmd vimenter * NERDTree
 
-"Bundle 'scrooloose/syntastic'
-"Bundle 'vim-scripts/c.vim'
-Bundle 'tpope/vim-fugitive'
-"Bundle 'Valloric/YouCompleteMe'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'tpope/vim-surround'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle 'honza/vim-snippets'
-Bundle "Rip-Rip/clang_complete"
-Bundle "vim-scripts/a.vim"
-Bundle "octol/vim-cpp-enhanced-highlight"
-Bundle "moll/vim-node"
-Bundle "marijnh/tern_for_vim"
-"Bundle "ahayman/vim-nodejs-complete"
-"Bundle 'maksimr/vim-jsbeautify'
-"Bundle "pangloss/vim-javascript"
-"Bundle "Raimondi/delimitMate"
-Bundle "xolox/vim-lua-ftplugin"
-Bundle "xolox/vim-misc"
-Bundle "907th/vim-auto-save"
-Bundle "vim-ruby/vim-ruby"
-Bundle "kchmck/vim-coffee-script"
-Bundle "embear/vim-localvimrc"
-Bundle "rust-lang/rust.vim"
-
+Plugin 'scrooloose/syntastic'
+"Plugin 'vim-scripts/c.vim'
+Plugin 'tpope/vim-fugitive'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'tpope/vim-surround'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+"Plugin "Rip-Rip/clang_complete"
+Plugin 'vim-scripts/a.vim'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'moll/vim-node'
+Plugin 'marijnh/tern_for_vim'
+"Plugin "ahayman/vim-nodejs-complete"
+"Plugin 'maksimr/vim-jsbeautify'
+"Plugin "pangloss/vim-javascript"
+"Plugin "Raimondi/delimitMate"
+Plugin 'xolox/vim-lua-ftplugin'
+Plugin 'xolox/vim-misc'
+Plugin '907th/vim-auto-save'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'embear/vim-localvimrc'
+Plugin 'rust-lang/rust.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'alvan/vim-closetag'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'fatih/vim-go'
+Plugin 'vim-unimpaired'
 
 
 " ================Vundle Stuff done========================
@@ -185,18 +194,45 @@ let g:syntastic_enable_signs=1
 let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let b:syntastic_cpp_cflags = ' -I/usr/include/qt -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore'
+let b:syntastic_cpp_cflags = ' -I/usr/include/qt -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/8.1.1'
+let g:syntastic_mode_map = { 'passive_filetypes': ['scala'] }
+let g:syntastic_rust_checkers = ['cargo']
+"let g:syntastic_asm_compiler = 'arm-none-eabi-as'
+"set statusline+=%#warningmsg#
+
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 
 " ================ Python-Mode Settings ========================
 
 " ================ YCM Settings ========================
 
+" ================Closetag Settings ========================
+" " filenames like *.xml, *.html, *.xhtml, ...
+" These are the file extensions where this plugin is enabled.
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.xml'
+" Shortcut for closing tags, default is '>'
+"
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+"
+let g:closetag_close_shortcut = '<leader>>'
 
 " ================ delimitMate Settings ========================
 
 let delimitMate_expand_cr=1
 
 " ================ My functions ========================
+set background=dark
+colorscheme solarized
 
 set conceallevel=0
 
@@ -215,3 +251,4 @@ autocmd FileType coffee nnoremap <F11> :CoffeeCompile<CR>
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
